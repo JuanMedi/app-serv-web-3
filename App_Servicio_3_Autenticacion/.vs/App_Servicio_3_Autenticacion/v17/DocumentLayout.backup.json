@@ -1,0 +1,48 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\usuario\\Documents\\Examenes App-Serv-Web\\app-serv-web-3\\App_Servicio_3_Autenticacion\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2017B362-CF57-4A1B-9D99-81FF22D74DA4}|App_Servicio_3_Autenticacion\\App_Servicio_3_Autenticacion.csproj|c:\\users\\usuario\\documents\\examenes app-serv-web\\app-serv-web-3\\app_servicio_3_autenticacion\\app_servicio_3_autenticacion\\models\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{2017B362-CF57-4A1B-9D99-81FF22D74DA4}|App_Servicio_3_Autenticacion\\App_Servicio_3_Autenticacion.csproj|solutionrelative:app_servicio_3_autenticacion\\models\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Model1.edmx [Diagram1]",
+              "DocumentMoniker": "C:\\Users\\usuario\\Documents\\Examenes App-Serv-Web\\app-serv-web-3\\App_Servicio_3_Autenticacion\\App_Servicio_3_Autenticacion\\Models\\Model1.edmx",
+              "RelativeDocumentMoniker": "App_Servicio_3_Autenticacion\\Models\\Model1.edmx",
+              "ToolTip": "C:\\Users\\usuario\\Documents\\Examenes App-Serv-Web\\app-serv-web-3\\App_Servicio_3_Autenticacion\\App_Servicio_3_Autenticacion\\Models\\Model1.edmx [Diagram1]",
+              "RelativeToolTip": "App_Servicio_3_Autenticacion\\Models\\Model1.edmx [Diagram1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
+              "WhenOpened": "2025-04-21T21:32:39.254Z",
+              "EditorCaption": " [Diagram1]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
