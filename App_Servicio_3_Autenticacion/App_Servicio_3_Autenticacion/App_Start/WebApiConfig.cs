@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App_Servicio_3_Autenticacion.Clases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -9,9 +10,10 @@ namespace App_Servicio_3_Autenticacion
     {
         public static void Register(HttpConfiguration config)
         {
-            // Configuración y servicios de Web API
-
-            // Rutas de Web API
+            // Web API configuration and services
+            //Habilitar el esquema de autenticación, para la validación del token
+            config.MessageHandlers.Add(new TokenValidationHandler());
+            // Web API routes
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(

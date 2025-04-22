@@ -1,67 +1,85 @@
 ﻿using App_Servicio_3_Autenticacion.Models;
+using Servicios_6_8.Models;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Design;
 using System.Linq;
 using System.Web;
-using System.Web.UI.WebControls;
 
 namespace App_Servicio_3_Autenticacion.Clases
 {
     public class clsLogin
     {
-        private DBExamenEntities dbSuper = new DBExamenEntities();
+        private DBExamenEntities dbMatricula = new DBExamenEntities();
         public Login login { get; set; }
-        private LoginRespuesta logRpta;
+        public LoginRespuesta loginRespuesta { get; set; }
         private bool ValidarUsuario()
         {
             try
             {
-                clsCypher cifrar = new clsCypher();
-                Usuario usuario = dbSuper.Usuarios.FirstOrDefault(u => u.userName == login.Usuario);
-                if (usuario == null)
+                Estudiante estudiante = dbMatricula.Estudiantes.FirstOrDefault(u => u.Usuario == login.Usuario);
+                if (estudiante == null)
                 {
-                    logRpta = new LoginRespuesta();
-                    logRpta.Mensaje = "Usuario no existe";
+                    loginRespuesta = new LoginRespuesta();
+                    loginRespuesta.Mensaje = "Usuario no existe";
                     return false;
                 }
-                byte[] arrBytesSalt = Convert.FromBase64String(usuario.Salt);
-                string ClaveCifrada = cifrar.HashPassword(login.Clave, arrBytesSalt);
-                login.Clave = ClaveCifrada;
                 return true;
             }
             catch (Exception ex)
             {
-                logRpta = new LoginRespuesta();
-                logRpta.Mensaje = ex.Message;
+                loginRespuesta = new LoginRespuesta();
+                loginRespuesta.Mensaje = ex.Message;
+                return false;
+            }
+        }
+        private bool ValidarClave()
+        {
+            try
+            {
+                //Se consulta el usuario con la clave encriptada y el usuario para validar si existe
+                Estudiante estudiante = dbMatricula.Estudiantes.FirstOrDefault(u => u.Usuario == login.Usuario && u.Clave == login.Clave);
+                if (estudiante == null)
+                {
+                    //Si no existe la clave es incorrecta
+                    loginRespuesta.Autenticado = false;
+                    loginRespuesta.Mensaje = "La clave no coincide";
+                    return false;
+                }
+                //La clave y el usuario son correctos
+                return true;
+            }
+            catch (Exception ex)
+            {
+                loginRespuesta.Autenticado = false;
+                loginRespuesta.Mensaje = ex.Message;
                 return false;
             }
         }
         public IQueryable<LoginRespuesta> Ingresar()
         {
-            if (ValidarUsuario())
+            //Si la validación es simple, en este punto se pone el código: if (user = "admin"){ token=...;}else{error;}
+            if (ValidarUsuario() && ValidarClave())
             {
-                //string token = TokenGenerator.GenerateTokenJwt(login.Usuario);
+                //Si el usuario y la clave son correctas, se genera el token
                 string token = TokenGenerator.GenerateTokenJwt(login.Usuario);
-                return from U in dbSuper.Set<Usuario>()
-                       join UP in dbSuper.Set<Usuario_Perfil>()
-                       on U.id equals UP.idUsuario
-                       join P in dbSuper.Set<Perfil>()
-                       on UP.idPerfil equals P.id
-                       where U.userName == login.Usuario &&
-                             U.Clave == login.Clave
+                //Consulta la información del usuario y el perfil
+                return from E in dbMatricula.Set<Estudiante>()
+                       where E.Usuario == login.Usuario &&
+                               E.Clave == login.Clave
                        select new LoginRespuesta
                        {
-                           Usuario = U.userName,
+                           Usuario = E.Usuario,
                            Autenticado = true,
                            Token = token,
-                           Perfil = P.Nombre,
-                           PaginaInicio = P.PaginaNavegar,
-                           Mensaje = "Usuario autenticado",
+                           Mensaje = ""
                        };
             }
             else
             {
-                return null;
+                List<LoginRespuesta> List = new List<LoginRespuesta>();
+                List.Add(loginRespuesta);
+                return List.AsQueryable();
             }
         }
     }

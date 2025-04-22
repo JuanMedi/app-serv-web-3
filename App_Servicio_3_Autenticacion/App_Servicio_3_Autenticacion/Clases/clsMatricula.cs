@@ -23,7 +23,7 @@ namespace App_Servicio_3_Autenticacion.Clases
             }
             catch (Exception ex)
             {
-                return "Error al insertar la matricula: " + ex.Message;
+                return "Error al insertar la matrícula: " + ex.Message;
             }
         }
 
@@ -48,7 +48,7 @@ namespace App_Servicio_3_Autenticacion.Clases
         {
             try
             {
-                Matricula ma = dbMatricula.Matriculas.Where(m => m.idMatricula == matricula.idMatricula).FirstOrDefault();
+                Matricula ma = dbMatricula.Matriculas.Where(m => m.idMatricula == idmatricula).FirstOrDefault();
                 return ma;
             }
             catch (Exception ex)
@@ -62,23 +62,23 @@ namespace App_Servicio_3_Autenticacion.Clases
             Matricula ma = Consultar(matricula.idMatricula);
             if (ma == null)
             {
-                return "Matricula no existe";
+                return "Matrícula no existe";
             }
             dbMatricula.Matriculas.AddOrUpdate(matricula);
             dbMatricula.SaveChanges();
-            return "Matricula actualizada correctamente";
+            return "Matrícula actualizada correctamente";
         }
 
-        public string Borrar()
+        public string Borrar(int idmatricula)
         {
-            Matricula ma = Consultar(matricula.idMatricula);
+            Matricula ma = Consultar(idmatricula);
             if (ma == null)
             {
-                return "Vehiculo no existe";
+                return "Matrícula no existe";
             }
             dbMatricula.Matriculas.Remove(ma);
             dbMatricula.SaveChanges();
-            return "Vehiculo eliminado correctamente";
+            return "Matrícula eliminada correctamente";
         }
 
     }
