@@ -1,0 +1,213 @@
+{
+	"info": {
+		"_postman_id": "bbebd04c-1f51-4ef4-8e0b-28f27cc81625",
+		"name": "Examen 3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39631283"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Usuario\":\"lauramg\",\r\n    \"Clave\":\"clave123\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}{{login}}",
+							"host": [
+								"{{url}}{{login}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Matrícula",
+			"item": [
+				{
+					"name": "Consultar por estudiante y semestre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}{{matricula}}ConsultarXEstudiante?documento=1002345678&semestre=2024-2",
+							"host": [
+								"{{url}}{{matricula}}ConsultarXEstudiante"
+							],
+							"query": [
+								{
+									"key": "documento",
+									"value": "1002345678"
+								},
+								{
+									"key": "semestre",
+									"value": "2024-2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insertar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"idEstudiante\": 3,\r\n  \"numeroCreditos\": 18,\r\n  \"valorCredito\": 80000,\r\n  \"totalMatricula\": 1440000,\r\n  \"fechaMatricula\": \"2025-01-10\",\r\n  \"semestreMatricula\": \"2025-1\",\r\n  \"materiasMatriculadas\": \"Ingeniería de Software, Seguridad Informática, Inteligencia Artificial\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}{{matricula}}Insertar",
+							"host": [
+								"{{url}}{{matricula}}Insertar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"idMatricula\": 5,\r\n  \"idEstudiante\": 1,\r\n  \"numeroCreditos\": 20,\r\n  \"valorCredito\": 78000,\r\n  \"totalMatricula\": 1560000,\r\n  \"fechaMatricula\": \"2024-08-01\",\r\n  \"semestreMatricula\": \"2025-1\",\r\n  \"materiasMatriculadas\": \"Programación II, Bases de Datos\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}{{matricula}}Actualizar",
+							"host": [
+								"{{url}}{{matricula}}Actualizar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}{{matricula}}Eliminar?idmatricula=6",
+							"host": [
+								"{{url}}{{matricula}}Eliminar"
+							],
+							"query": [
+								{
+									"key": "idmatricula",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImxhdXJhbWciLCJuYmYiOjE3NDUyODQ4MTQsImV4cCI6MTc0NTMyODAxNCwiaWF0IjoxNzQ1Mjg0ODE0LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjQ0MzIzIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo0NDMyMyJ9.eCotcckyfA2Pj4HlsR-u10XJ1BLOiRpqVuKdbNaKjZE",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "https://localhost:44323/",
+			"type": "string"
+		},
+		{
+			"key": "login",
+			"value": "api/Login/Ingresar/",
+			"type": "string"
+		},
+		{
+			"key": "matricula",
+			"value": "api/Matricula/",
+			"type": "string"
+		}
+	]
+}
